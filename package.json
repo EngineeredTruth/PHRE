@@ -1,0 +1,34 @@
+{
+  "name": "phrealestate",
+  "version": "1.0.0",
+  "description": "PH Real Estate website",
+  "main": "index.js",
+  "babel": {
+    "presets": [
+      "babel-preset-es2015"
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EngineeredTruth/PHRE.git"
+  },
+  "author": "Matt Tran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EngineeredTruth/PHRE/issues"
+  },
+  "homepage": "https://github.com/EngineeredTruth/PHRE#readme",
+  "dependencies": {
+    "babel-core": "^6.20.0",
+    "babel-register": "^6.18.0",
+    "body-parser": "^1.15.2",
+    "cors": "^2.8.1",
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0"
+  }
+}
