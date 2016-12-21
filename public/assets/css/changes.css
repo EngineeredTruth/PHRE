@@ -1,0 +1,18 @@
+.black {
+    background: rgb(40, 40, 40) !important;
+}
+
+.search {
+  width: 100%;
+  height: 100px;
+  background: #35979f;
+}
+
+input[name=location],
+input[name=min-price],
+select[name=property-type]
+ {
+  background: white;
+  width: 20%;
+  height: 30px;
+}
