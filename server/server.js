@@ -34,7 +34,6 @@ var strategy = new Auth0Strategy({
     function(accessToken, refreshToken, extraParams, profile, done) {
       console.log("What's DB: ", db)
 
-
         return done(null, profile);
     }
 );
