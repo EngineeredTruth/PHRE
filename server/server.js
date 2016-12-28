@@ -5,7 +5,6 @@ import session from 'express-session';
 import passport from 'passport';
 import massive from 'massive';
 import config from './config.json'
-
 const Auth0Strategy = require('passport-auth0')
 
 const massiveInstance = massive.connectSync({
@@ -23,7 +22,7 @@ app.set('db', massiveInstance);
 app.use(express.static(__dirname + '/../public'));
 
 const db = app.get('db');
-// const ctrl = require('./ctrl.js');
+const ctrl = require('./ctrl.js');
 
 var strategy = new Auth0Strategy({
         domain: 'tran.auth0.com',
@@ -32,7 +31,7 @@ var strategy = new Auth0Strategy({
         callbackURL: config.callbackURL
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
-      console.log("What's DB: ", db)
+      // console.log("What's DB: ", db)
 
         return done(null, profile);
     }
@@ -43,8 +42,8 @@ passport.use(strategy);
 app.get('/auth/', passport.authenticate('auth0'));
 app.get('/callback', passport.authenticate('auth0', {
     failureRedirect: '/auth',
-    successRedirect: '/'
-}));
+    successRedirect: '/#/create-listing'
+}), ctrl.loggedin);
 
 passport.serializeUser((user, done) => {
     done(null, user); // put the whole user object from YouTube on the sesssion;
