@@ -27,9 +27,14 @@ var app = angular.module('app',['ui.router','ui.bootstrap',"pageslide-directive"
       })
       .state('create-listing', {
         url:'/create-listing',
-        templateUrl: './views/create-listing.html'
+        templateUrl: './views/create-listing.html',
+        controller: 'AdminCtrl',
+        resolve: {
+          promiseObj: function(factory){
+            return factory.checkUser();
+          }
+        }
       })
-
 
       $urlRouterProvider.otherwise('/');
 })

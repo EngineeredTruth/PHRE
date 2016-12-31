@@ -3,8 +3,7 @@ var db = app.get('db');
 
 module.exports = {
   loggedin: (req, res, next) => {
-    return res.json({
-      "test": "is working"
-    })
+    console.log(req);
+    return next();
   }
 }

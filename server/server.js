@@ -13,6 +13,12 @@ const massiveInstance = massive.connectSync({
 
 const app = module.exports = express();
 
+app.use(session({
+    secret: config.sessionSecret,
+    saveUninitialized: false,
+    resave: true
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(bodyParser.json());
@@ -31,7 +37,6 @@ var strategy = new Auth0Strategy({
         callbackURL: config.callbackURL
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
-      // console.log("What's DB: ", db)
 
         return done(null, profile);
     }
@@ -43,7 +48,15 @@ app.get('/auth/', passport.authenticate('auth0'));
 app.get('/callback', passport.authenticate('auth0', {
     failureRedirect: '/auth',
     successRedirect: '/#/create-listing'
-}), ctrl.loggedin);
+}));
+
+app.get('/checkUser',(req, res, next) => {
+  console.log("REQ.USER: ", req.user);
+  if(req.user.id = "facebook|10101264400622962"){
+    return res.json({"admin":true});
+  }
+  return res.json({"admin":false});
+})
 
 passport.serializeUser((user, done) => {
     done(null, user); // put the whole user object from YouTube on the sesssion;
