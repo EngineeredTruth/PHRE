@@ -1,21 +1,33 @@
 <div>
-
-  <h1>SUP BRO</h1>
-
-  <div ng-if='admin'>
+  <!-- <div style='margin: 100px; width: 300px;' ng-if='admin'> -->
+      <div style='margin: 100px; width: 300px;'>
   <form id="uploadForm" enctype="multipart/form-data" action="/api/photo" method="post">
 
-    <select name="carlist" form="uploadForm">
-      <option value="volvo">Volvo</option>
-      <option value="saab">Saab</option>
-      <option value="opel">Opel</option>
-      <option value="audi">Audi</option>
+    <select name="type" form="uploadForm">
+      <option value="presale">Pre-sale</option>
+      <option value="rfo">Ready for Occupancy</option>
+      <option value="rental">Rental</option>
     </select>
+
+    <select name="developer" form="uploadForm">
+      <option value="Megaworld">Megaworld</option>
+      <option value="Alveo">Alveo</option>
+      <option value="AyalaPremiere">Ayala Premiere</option>
+      <option value="Century">Century Properties</option>
+    </select>
+
+
+    <select name="projectType" form="uploadForm">
+      <option value="Condominium">Condominium</option>
+      <option value="Apartment">Apartment</option>
+      <option value="Lot">Lot</option>
+      <option value="House">House</option>
+    </select>
+
     <input type="text" value="title" name="title">
     <input type="file" name="userPhoto" multiple />
     <input type="submit" value="Upload Image" name="submit" />
 </form>
 </div>
-
 </br><span id="status"></span>
 </div>

@@ -2,6 +2,7 @@ CREATE TABLE listings
 (
   id serial primary key,
   name varchar(100),
+  internal_name varchar(100),
   developer varchar(40),
   project_type varchar(30),
   listing_type varchar(30),
@@ -13,7 +14,7 @@ CREATE TABLE listings
 
 CREATE TABLE pictures
 (
-  listings_name varchar(100),
+  internal_name varchar(100),
   index integer,
   thumb boolean,
   title varchar(100)

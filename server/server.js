@@ -6,7 +6,7 @@ import passport from 'passport';
 import massive from 'massive';
 import config from './config.json';
 import multer from 'multer';
-const Auth0Strategy = require('passport-auth0')
+const Auth0Strategy = require('passport-auth0');
 
 const massiveInstance = massive.connectSync({
     connectionString: config.connectionString
@@ -53,7 +53,7 @@ app.get('/callback', passport.authenticate('auth0', {
 }));
 
 app.get('/checkUser', (req, res, next) => {
-    if (req.user.id === "facebook|10101264400622962") {
+    if (req.user !== undefined && req.user.id === "facebook|10101264400622962") {
         return res.json({
             "admin": true
         });
@@ -67,8 +67,14 @@ app.get('/checkUser', (req, res, next) => {
 
 var storage = multer.diskStorage({
   destination:  (req, file, callback) => {
-    console.log('destination: ', req.body);
-    callback(null, './uploads');
+    if(req.body.type === 'pre-sale'){
+      return callback(null, './public/uploads/pre-sale');
+  } else if (req.body.type === 'rental') {
+      return callback(null, './public/uploads/rentals');
+  } else if (req.body.type === 'rfo'){
+    return callback(null, './public/uploads/rfo');
+  }
+    return callback(null, './uploads');
   },
   filename: (req, file, callback) => {
     console.log('filename: ', req.body);
@@ -86,8 +92,6 @@ var limits = {
 }
 
 var upload = multer({ storage : storage, limits : limits }).array('userPhoto',10)
-// console.log(upload());
-
 
 app.post('/api/photo', (req,res) => {
   console.log('post request: ', req.body);
