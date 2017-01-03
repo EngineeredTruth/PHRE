@@ -67,12 +67,12 @@ app.get('/checkUser', (req, res, next) => {
 
 var storage = multer.diskStorage({
   destination:  (req, file, callback) => {
-    if(req.body.type === 'pre-sale'){
+    if(req.body.type === 'presale'){
       return callback(null, './public/uploads/pre-sale');
   } else if (req.body.type === 'rental') {
       return callback(null, './public/uploads/rentals');
   } else if (req.body.type === 'rfo'){
-    return callback(null, './public/uploads/rfo');
+      return callback(null, './public/uploads/rfo');
   }
     return callback(null, './uploads');
   },
