@@ -63,48 +63,8 @@ app.get('/checkUser', (req, res, next) => {
     });
 })
 
-//multer stuff
 
-var storage = multer.diskStorage({
-  destination:  (req, file, callback) => {
-    if(req.body.type === 'presale'){
-      return callback(null, './public/uploads/pre-sale');
-  } else if (req.body.type === 'rental') {
-      return callback(null, './public/uploads/rentals');
-  } else if (req.body.type === 'rfo'){
-      return callback(null, './public/uploads/rfo');
-  }
-    return callback(null, './uploads');
-  },
-  filename: (req, file, callback) => {
-    console.log('filename: ', req.body);
-    if( file.mimetype === 'image/jpeg'){
-      var name = Date.now() + "." + 'jpg'
-    } else if (file.mimetype === 'image/png'){
-      var name = Date.now() + "." + 'png'
-    }
-    callback(null, name);
-  }
-});
-
-var limits = {
-  fileSize: 10000000
-}
-
-var upload = multer({ storage : storage, limits : limits }).array('userPhoto',10)
-
-app.post('/api/photo', (req,res) => {
-  console.log('post request: ', req.body);
-    upload(req,res, (err) => {
-      console.log('after upload');
-        //console.log(req.body);
-        //console.log(req.files);
-        if(err) {
-            return res.end("Error uploading file: ", err);
-        }
-        res.end("File is uploaded");
-    });
-});
+app.post('/api/photo', ctrl.upload_stage0, ctrl.upload_stage1, ctrl.upload_stage2);
 
 passport.serializeUser((user, done) => {
     done(null, user); // put the whole user object from YouTube on the sesssion;
