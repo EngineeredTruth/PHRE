@@ -1,3 +1,4 @@
+require('babel-core/register');
 var app = require('./server.js');
 var db = app.get('db');
 var multer = require('multer');
@@ -6,11 +7,11 @@ var multer = require('multer');
 
 var storage = multer.diskStorage({
   destination:  (req, file, callback) => {
-    if(req.body.type === 'presale'){
+    if(req.body.listing_type === 'presale'){
       return callback(null, './public/uploads/pre-sale');
-  } else if (req.body.type === 'rental') {
+  } else if (req.body.listing_type === 'rental') {
       return callback(null, './public/uploads/rentals');
-  } else if (req.body.type === 'rfo'){
+  } else if (req.body.listing_type === 'rfo'){
       return callback(null, './public/uploads/rfo');
   }
     return callback(null, './uploads');
@@ -58,6 +59,25 @@ module.exports = {
   },
   upload_stage2: (req, res) => {
     console.log('stage 2: ',  req.body);
+
+    let array = [
+      req.body.title,
+      req.body.title.replace(/\W/,'g'),
+      req.body.developer,
+      req.body.project_type,
+      req.body.listing_type,
+      req.body.price,
+      req.body.address,
+      req.body.location
+    ]
+
+    db.insert_listing(array, (err, response) => {
+      if(err){
+        consolle.log('inert listing error: ', err)
+      }
+      return console.log(response);
+    })
+
     for(let i = 0; i < req.files; i++){
 
     }

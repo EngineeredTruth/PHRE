@@ -3,7 +3,7 @@
       <div style='margin: 100px; width: 300px;'>
   <form id="uploadForm" enctype="multipart/form-data" action="/api/photo" method="post">
 
-    <select name="type" form="uploadForm">
+    <select name="listing_type" form="uploadForm">
       <option value="presale">Pre-sale</option>
       <option value="rfo">Ready for Occupancy</option>
       <option value="rental">Rental</option>
@@ -16,7 +16,7 @@
       <option value="Century">Century Properties</option>
     </select>
 
-    <select name="projectType" form="uploadForm">
+    <select name="project_type" form="uploadForm">
       <option value="Condominium">Condominium</option>
       <option value="Apartment">Apartment</option>
       <option value="Lot">Lot</option>
@@ -24,12 +24,12 @@
     </select>
 
     <p style='margin: 1em 0 0.5em 0'>Title: </p><input type="text" name="title">
-    <p style='margin: 1em 0 0.5em 0'>Price: </p><input type="text" name="price">
+    <p style='margin: 1em 0 0.5em 0'>Lowest Price: </p><input type="text" name="price">
     <p style='margin: 1em 0 0.5em 0'>Address: </p><input type="text" name="address">
-    <p style='margin: 1em 0 0.5em 0'>Location (city & area): </p><input type="text" name="address">
+    <p style='margin: 1em 0 0.5em 0'>Location (city & area): </p><input type="text" name="location">
     <input type="file" name="userPhoto" multiple />
     <input type="submit" value="Upload Image" name="submit" />
-</form>
+  </form>
 </div>
-</br><span id="status"></span>
+  </br><span id="status"></span>
 </div>
