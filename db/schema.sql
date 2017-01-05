@@ -17,7 +17,8 @@ CREATE TABLE pictures
   internal_name varchar(100),
   index integer,
   thumb boolean,
-  title varchar(100)
+  title varchar(100),
+  file_path varchar(255),
 );
 
 CREATE TABLE users

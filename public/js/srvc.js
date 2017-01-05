@@ -10,3 +10,6 @@ app.factory('factory', function($http){
     }
   }
 })
+.service('srvc', function(){
+  this.test = 'Matt'
+})

@@ -23,7 +23,8 @@ var app = angular.module('app',['ui.router','ui.bootstrap',"pageslide-directive"
       })
       .state('home', {
         url:'/',
-        templateUrl: './views/home.html'
+        templateUrl: './views/home.html',
+        controller: 'MainCtrl'
       })
       .state('create-listing', {
         url:'/create-listing',

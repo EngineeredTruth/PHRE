@@ -35,16 +35,16 @@ var upload = multer({ storage : storage, limits : limits }).array('userPhoto',10
 
 module.exports = {
   loggedin: (req, res, next) => {
-    console.log(req);
+    // console.log(req);
     return next();
   },
   upload_stage0: (req, res, next) => {
-    console.log('stage 0: ',  req.body);
+    // console.log('stage 0: ',  req.body);
     next()
   },
   upload_stage1: (req,res, next) => {
 
-    console.log('initial post request: ', req.body);
+    // console.log('initial post request: ', req.body);
 
       upload(req,res, (err) => {
         console.log('after upload');
@@ -58,11 +58,11 @@ module.exports = {
 
   },
   upload_stage2: (req, res) => {
-    console.log('stage 2: ',  req.body);
+    // console.log('stage 2, req.body: ',  req.body);
 
     let array = [
       req.body.title,
-      req.body.title.replace(/\W/,'g'),
+      req.body.title.replace(/\W/g,''),
       req.body.developer,
       req.body.project_type,
       req.body.listing_type,
@@ -73,14 +73,34 @@ module.exports = {
 
     db.insert_listing(array, (err, response) => {
       if(err){
-        consolle.log('inert listing error: ', err)
+        console.log('insert listing error: ', err)
       }
       return console.log(response);
     })
 
-    for(let i = 0; i < req.files; i++){
+    console.log('stage2, req.files: ', req.files)
+    console.log('stage2, __dirname ', __dirname);
 
+    for(let i = 0; i < req.files.length; i++){
+
+      let pic_array = [
+        req.body.title.replace(/\W/g,''),
+        req.files[i].filename,
+        req.files[i].path
+      ];
+
+      console.log('array before inserting into pics: ', pic_array)
+
+      db.insert_picture(pic_array, (err, response) => {
+        if(err){
+          console.log('insert picture error: ', err)
+        }
+        return console.log('insert picture completed: ', response)
+      })
     }
-    res.end("File is uploaded");
+
+    res.render('create-titles', req.files, function(err, html){
+      res.send(html);
+    });
   }
 }
