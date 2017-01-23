@@ -99,8 +99,7 @@ module.exports = {
       })
     }
 
-    res.render('create-titles', req.files, function(err, html){
-      res.send(html);
-    });
+    res.render('test', { ID: 1234, url: "http://media.architecturaldigest.com/photos/56fd9d65ecd154e0329c1627/2:1/w_2560/london-travel-guide-lede.jpg"});
+
   }
 }

@@ -29,6 +29,8 @@ app.set('db', massiveInstance);
 
 app.use(express.static(__dirname + '/../public'));
 
+app.set('view engine', 'ejs');
+
 const db = app.get('db');
 const ctrl = require('./ctrl.js');
 
