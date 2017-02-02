@@ -2,13 +2,19 @@
 	<head>
 
 	</head>
-	<body ng-controller='UserCtrl' ng-init='users= #{JSON.stringify(users)}'>
+	<body ng-controller='UserCtrl' ng-init="array= <%= JSON.stringify(users) %>">
 		<h1>Hello World</h1>
 		<h2>Number: <%= ID %></h2>
-    <img src=<%= url %> />
-
+    <img style='width: 400px;' src=<%= url %> />
+    <%= users %>
+    <ul>
+      <li ng-repeat='user in array'>{{user}}</li>
+    </ul>
+    <img style='width: 400px;' src='/uploads/pre-sale/@@@1485196209656.png' />
+    <%= sample %>
 	</body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
-<script src='ctrl.js'></script>
+<script src='./app.js'></script>
+<script src='./ctrl.js'></script>
 </html>
