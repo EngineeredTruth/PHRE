@@ -99,12 +99,12 @@ module.exports = {
       })
     }
 
-    console.log('REQ FILES: ',req.files.path)
+    console.log('REQ FILES: ',req.files)
 
     res.render('test', {
       ID: 1234,
       url: "http://media.architecturaldigest.com/photos/56fd9d65ecd154e0329c1627/2:1/w_2560/london-travel-guide-lede.jpg",
-      sample:req.files[0].path,
+      sample:req.files,
       users: ['Matt', 'Sam', 'Derrick', 'Alex']
     });
 

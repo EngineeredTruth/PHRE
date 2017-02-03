@@ -10,8 +10,14 @@
     <ul>
       <li ng-repeat='user in array'>{{user}}</li>
     </ul>
-    <img style='width: 400px;' src='/uploads/pre-sale/@@@1485196209656.png' />
-    <%= sample %>
+
+    <div ng-init='files = <%= JSON.stringify(sample) %>'>
+      <ul>
+        <li ng-repeat='file in files'>{{file.path.replace('public/','')}}<img style='width: 300px;' ng-src="{{file.path.replace('public','..')}}" /></li>
+      </ul>
+    </div>
+
+    <!-- <img src=<%= sample[0].path.replace('public','..') %> /> -->
 	</body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
