@@ -13,7 +13,7 @@ var storage = multer.diskStorage({
       return callback(null, './public/uploads/rentals');
   } else if (req.body.listing_type === 'rfo'){
       return callback(null, './public/uploads/rfo');
-  }
+  } 
     return callback(null, './uploads');
   },
   filename: (req, file, callback) => {

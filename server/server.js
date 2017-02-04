@@ -68,6 +68,11 @@ app.get('/checkUser', (req, res, next) => {
 
 app.post('/api/photo', ctrl.upload_stage0, ctrl.upload_stage1, ctrl.upload_stage2);
 
+app.delete('/api/deletePic', (req, res, next) => {
+  console.log('Delete hit')
+  res.json({'Deleted':'Success'})
+});
+
 passport.serializeUser((user, done) => {
     done(null, user); // put the whole user object from YouTube on the sesssion;
 });
